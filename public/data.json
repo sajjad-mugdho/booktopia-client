@@ -1,0 +1,92 @@
+[
+    {
+        "title": "Owner of a Lonely Heart: A Memoir",
+        "author": "Beth Nguyen",
+        "genre": "Biography",
+        "publicationDate": "July 4, 2023",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1686179155i/62919898.jpg",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    },
+    {
+        "title": "Anna Karenina by Leo Tolstoy",
+        "author": "Beth Nguyen",
+        "genre": "Biography",
+        "publicationDate": "July 4, 2023",
+        "image": "https://www.rd.com/wp-content/uploads/2020/01/11_Anna-Karenina-by-Leo-Tolstoy-via-amazon.jpg?fit=700%2",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    },
+    {
+        "title": "Tomorrow, and Tomorrow, and Tomorrow",
+        "author": "Gabrielle Zevin",
+        "genre": "Fiction",
+        "publicationDate": "July 5, 2022",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1636978687i/58784475.jpg",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    },
+    {
+        "title": "The Maid",
+        "author": "Nita Prose",
+        "genre": "Mystery",
+        "publicationDate": " January 4, 2022",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1643228739i/55196813.jpg",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    },
+    {
+        "title": "Carrie Soto Is Back",
+        "author": "Taylor Jenkins Reid",
+        "genre": "Historical Fiction",
+        "publicationDate": "August 30, 2022",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1649848581i/60435878.jpg",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    },
+    {
+        "title": "House of Sky and Breath",
+        "author": "Sarah J. Maas",
+        "genre": "Fantasy",
+        "publicationDate": "February 15, 2022",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1633097753i/40132775.jpg",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    },
+    {
+        "title": "Book Lovers",
+        "author": "Emily Henry",
+        "genre": "Romance",
+        "publicationDate": "May 3, 2022",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1638867089i/58690308.jpg",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    },
+    {
+        "title": "Sea of Tranquility",
+        "author": "Emily St. John Mandel",
+        "genre": "Science Fiction",
+        "publicationDate": "April 5, 2022",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1626710416i/58446227.jpg",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    },
+    {
+        "title": "Hidden Pictures",
+        "author": "Jason Rekulak",
+        "genre": "Jason Rekulak",
+        "publicationDate": "May 10, 2022",
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1635260162i/58724923.jpg",
+        "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "userId": "64dbaab50e54dc4c417925e7",
+        "review": []
+    }
+]

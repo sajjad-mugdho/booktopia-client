@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/booktopia.png";
 import user from "../assets/images/user.jpg";
 
@@ -11,13 +11,15 @@ const Navbar = () => {
         </a>
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
-        </div>
+        <Link to={"/"}>
+          <a className="btn btn-ghost">Home</a>
+        </Link>
+        <Link to={"/books"}>
+          <a className="btn btn-ghost">All Books</a>
+        </Link>
+        <Link to={"/login"}>
+          <a className="btn btn-ghost">Login</a>
+        </Link>
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
