@@ -1,5 +1,8 @@
+import { useSignupMutation } from "../redux/features/users/usersApi";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const SignUpForm = () => {
+  const [signup, { isError, isLoading, isSuccess }] = useSignupMutation();
   const handleSignUp = (e: any) => {
     e.preventDefault();
     const form = e.target;
@@ -7,7 +10,16 @@ const SignUpForm = () => {
     const email = form.email.value;
     const img = form.img.value;
     const password = form.password.value;
+
+    const options = {
+      data: { name: name, email: email, img: img, password: password },
+    };
+
+    signup(options);
     console.log(email, password, img, name);
+    console.log("isError:", isError);
+    console.log("isSuccess:", isSuccess);
+    console.log("isLoading:", isLoading);
 
     form.reset();
   };

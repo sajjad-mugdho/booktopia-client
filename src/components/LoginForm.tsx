@@ -1,13 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
+import { useLoginMutation } from "../redux/features/users/usersApi";
 
 const LoginForm = () => {
+  const [loginUser, { isError, isLoading, isSuccess }] = useLoginMutation();
   const handleLogin = (e: { preventDefault: () => void; target: any }) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+
+    const options = {
+      data: { email: email, password: password },
+    };
+    loginUser(options);
+
     console.log(email, password);
+    console.error(isError);
+    console.log("loading", isLoading);
+    console.log("success", isSuccess);
 
     form.reset();
   };
