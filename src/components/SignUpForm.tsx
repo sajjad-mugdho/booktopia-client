@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/users/userSlice";
 import { useSignupMutation } from "../redux/features/users/usersApi";
-
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast/headless";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const SignUpForm = () => {
   const [signup, { isError, isLoading, isSuccess }] = useSignupMutation();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const handleSignUp = async (e: any) => {
@@ -24,9 +26,16 @@ const SignUpForm = () => {
     if (user) {
       dispatch(setUser(user));
     }
-    console.log(user);
 
-    form.reset();
+    if (isLoading) {
+      return <p>Loading......</p>;
+    }
+    if (isSuccess) {
+      toast("User Signup Successfully");
+      form.reset();
+      navigate("/");
+    }
+    console.log(user);
   };
   return (
     <div className="card flex-shrink-0  max-w-sm shadow-2xl ">

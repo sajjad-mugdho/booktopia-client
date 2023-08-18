@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/images/booktopia.png";
 
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { clearUser } from "../redux/features/users/userSlice";
 
 const Navbar = () => {
-  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const storedUserData = localStorage.getItem("user");
+  const user = storedUserData ? JSON.parse(storedUserData) : null;
   console.log(user);
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+  };
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -51,7 +58,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={handleLogout}>Logout</a>
               </li>
             </ul>
           </div>

@@ -3,9 +3,11 @@
 import { useLoginMutation } from "../redux/features/users/usersApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/users/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [loginUser, { isError, isLoading, isSuccess }] = useLoginMutation();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const handleLogin = async (e: {
@@ -28,8 +30,11 @@ const LoginForm = () => {
     if (user) {
       dispatch(setUser(user));
     }
-
-    form.reset();
+    if (isSuccess) {
+      toast("Here is your toast.");
+      form.reset();
+      navigate("/");
+    }
   };
   return (
     <div className="card flex-shrink-0  max-w-sm shadow-2xl ">

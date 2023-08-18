@@ -1,8 +1,6 @@
-import { useAppSelector } from "../redux/hook";
-
 const AddBookForm = () => {
-  const user = useAppSelector((state) => state.user.user);
-  console.log(user);
+  const storedUserData = localStorage.getItem("user");
+  const user = storedUserData ? JSON.parse(storedUserData) : null;
   const handleAddBook = () => {
     console.log("test");
   };
@@ -69,19 +67,16 @@ const AddBookForm = () => {
             <span className="label-text">User Id</span>
           </label>
           <input
-            type="password"
-            placeholder="password"
-            name="password"
+            type="text"
+            placeholder="ID"
+            name="userId"
             className="input input-bordered"
+            value={user?._id}
+            disabled
           />
-          <label className="label">
-            <a href="#" className="label-text-alt link link-hover">
-              Forgot password?
-            </a>
-          </label>
         </div>
         <div className="form-control mt-6">
-          <input type="submit" className="btn btn-primary" value="Login" />
+          <input type="submit" className="btn btn-primary" value="Add Book" />
         </div>
       </form>
     </div>
