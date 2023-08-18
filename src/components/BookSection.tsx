@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  useGetBooksQuery,
-  useGetLastBooksQuery,
-} from "../redux/features/books/bookApi";
+import { useGetLastBooksQuery } from "../redux/features/books/bookApi";
 import BookCard from "./BookCard";
 
 const BookSection = () => {
