@@ -6,7 +6,7 @@ import { setUser } from "../redux/features/users/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const [loginUser, { isError, isLoading, isSuccess }] = useLoginMutation();
+  const [loginUser, { isLoading, isSuccess }] = useLoginMutation();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -23,18 +23,19 @@ const LoginForm = () => {
       data: { email: email, password: password },
     };
     const response = await loginUser(options);
-
+    if (isLoading) {
+      return <p>Loading....</p>;
+    }
     const user = response.data.data;
     console.log(user);
 
     if (user) {
       dispatch(setUser(user));
     }
-    if (isSuccess) {
-      toast("Here is your toast.");
-      form.reset();
-      navigate("/");
-    }
+
+    form.reset();
+
+    navigate("/");
   };
   return (
     <div className="card flex-shrink-0  max-w-sm shadow-2xl ">

@@ -5,7 +5,7 @@ const AddBookForm = () => {
     console.log("test");
   };
   return (
-    <div className="card flex-shrink-0  max-w-sm shadow-2xl ">
+    <div className="card flex-shrink-0  w-[32rem] my-10 shadow-2xl ">
       <form onSubmit={handleAddBook} className="card-body">
         <div className="form-control">
           <label className="label">
@@ -26,6 +26,17 @@ const AddBookForm = () => {
             type="text"
             name="book-genre"
             placeholder="Book Genre"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Book Image</span>
+          </label>
+          <input
+            type="text"
+            name="book-image"
+            placeholder="Book Image"
             className="input input-bordered"
           />
         </div>

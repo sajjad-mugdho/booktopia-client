@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast/headless";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const SignUpForm = () => {
-  const [signup, { isError, isLoading, isSuccess }] = useSignupMutation();
+  const [signup, { isLoading, isSuccess }] = useSignupMutation();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -35,6 +35,7 @@ const SignUpForm = () => {
       form.reset();
       navigate("/");
     }
+
     console.log(user);
   };
   return (

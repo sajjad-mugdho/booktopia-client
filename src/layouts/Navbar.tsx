@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/booktopia.png";
 
 import { useDispatch } from "react-redux";
@@ -6,12 +6,14 @@ import { clearUser } from "../redux/features/users/userSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const storedUserData = localStorage.getItem("user");
   const user = storedUserData ? JSON.parse(storedUserData) : null;
   console.log(user);
 
   const handleLogout = () => {
     dispatch(clearUser());
+    navigate("/login");
   };
   return (
     <div className="navbar bg-base-100">
