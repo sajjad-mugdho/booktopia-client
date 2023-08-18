@@ -4,9 +4,10 @@ import { useLoginMutation } from "../redux/features/users/usersApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/users/userSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const LoginForm = () => {
-  const [loginUser, { isLoading, isSuccess }] = useLoginMutation();
+  const [loginUser, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const LoginForm = () => {
     if (user) {
       dispatch(setUser(user));
     }
+    toast.success("Login Success");
 
     form.reset();
 

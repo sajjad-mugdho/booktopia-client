@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useGetBooksQuery } from "../redux/features/books/bookApi";
+import {
+  useGetBooksQuery,
+  useGetLastBooksQuery,
+} from "../redux/features/books/bookApi";
 import BookCard from "./BookCard";
 
 const BookSection = () => {
-  const { data, isLoading, isError } = useGetBooksQuery(undefined);
+  const { data, isLoading, isError } = useGetLastBooksQuery(undefined);
   console.log(data, isLoading, isError);
 
   return (

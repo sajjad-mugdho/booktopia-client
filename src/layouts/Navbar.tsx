@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/booktopia.png";
-
 import { useDispatch } from "react-redux";
 import { clearUser } from "../redux/features/users/userSlice";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(clearUser());
+    toast.success("Logout");
     navigate("/login");
   };
   return (

@@ -2,10 +2,10 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/users/userSlice";
 import { useSignupMutation } from "../redux/features/users/usersApi";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast/headless";
+import { toast } from "react-hot-toast";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const SignUpForm = () => {
-  const [signup, { isLoading, isSuccess }] = useSignupMutation();
+  const [signup, { isLoading }] = useSignupMutation();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -30,11 +30,10 @@ const SignUpForm = () => {
     if (isLoading) {
       return <p>Loading......</p>;
     }
-    if (isSuccess) {
-      toast("User Signup Successfully");
-      form.reset();
-      navigate("/");
-    }
+
+    toast.success("User Signup Successfully");
+    form.reset();
+    navigate("/");
 
     console.log(user);
   };
