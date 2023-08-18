@@ -1,10 +1,9 @@
 import hero from "../assets/images/books-hero.jpg";
-import { useGetBooksQuery } from "../redux/features/books/bookApi";
+// import { useGetBooksQuery } from "../redux/features/books/bookApi";
 
 const Hero = () => {
-  const { data, isError, isLoading } = useGetBooksQuery(undefined);
+  // const { data, isError, isLoading } = useGetBooksQuery(undefined);
 
-  console.log("hero", data);
   return (
     <div className="hero  bg-white">
       <div className="hero-content flex-col lg:flex-row">

@@ -1,10 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+
 import { useLoginMutation } from "../redux/features/users/usersApi";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/features/users/userSlice";
 
 const LoginForm = () => {
   const [loginUser, { isError, isLoading, isSuccess }] = useLoginMutation();
-  const handleLogin = (e: { preventDefault: () => void; target: any }) => {
+
+  const dispatch = useDispatch();
+  const handleLogin = async (e: {
+    preventDefault: () => void;
+    target: any;
+  }) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -13,12 +20,14 @@ const LoginForm = () => {
     const options = {
       data: { email: email, password: password },
     };
-    loginUser(options);
+    const response = await loginUser(options);
 
-    console.log(email, password);
-    console.error(isError);
-    console.log("loading", isLoading);
-    console.log("success", isSuccess);
+    const user = response.data.data;
+    console.log(user);
+
+    if (user) {
+      dispatch(setUser(user));
+    }
 
     form.reset();
   };
