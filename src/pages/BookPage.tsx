@@ -20,16 +20,11 @@ const BookPage = () => {
         />
       </div>
       <div className="flex flex-row">
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <figure>
-            <img
-              src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-            />
-          </figure>
+        <div className="card w-96 max-h-screen mx-10 bg-sky-500 shadow-xl">
+          <figure></figure>
           <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 className="card-title">Filters!</h2>
+            <p></p>
             <div className="card-actions justify-end">
               <button className="btn btn-primary">Buy Now</button>
             </div>
@@ -40,6 +35,13 @@ const BookPage = () => {
             <BookCard book={book} />
           ))}
         </div>
+      </div>
+      <div className="join my-5">
+        <button className="join-item btn">1</button>
+        <button className="join-item btn">2</button>
+        <button className="join-item btn btn-disabled">...</button>
+        <button className="join-item btn">99</button>
+        <button className="join-item btn">100</button>
       </div>
     </div>
   );

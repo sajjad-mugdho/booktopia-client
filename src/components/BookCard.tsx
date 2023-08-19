@@ -1,8 +1,8 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BookCard = ({ book }: any) => {
-  const { title, image, genre, author } = book;
+  const { id, title, image, genre, author } = book;
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
       <figure>
@@ -13,7 +13,9 @@ const BookCard = ({ book }: any) => {
         <p className="text-left text-lg font-semibold">Genre: {genre}</p>
         <p className="text-left text-lg font-semibold">Author: {author}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Get Details</button>
+          <Link to={`/book-details/${id}`}>
+            <button className="btn btn-primary">Get Details</button>
+          </Link>
         </div>
       </div>
     </div>

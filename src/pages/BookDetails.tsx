@@ -1,5 +1,20 @@
+import { useParams } from "react-router-dom";
+import BookDetailsCard from "../components/BookDetailsCard";
+import { useGetSingleBookQuery } from "../redux/features/books/bookApi";
+
 const BookDetails = () => {
-  return <div>book details</div>;
+  const { id } = useParams();
+
+  const { data } = useGetSingleBookQuery(id);
+  const book = data?.data;
+  console.log("Data:", book);
+  return (
+    <div>
+      <div className=" m-5 gap-10 pb-20">
+        <BookDetailsCard book={book} />
+      </div>
+    </div>
+  );
 };
 
 export default BookDetails;

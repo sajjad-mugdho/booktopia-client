@@ -6,6 +6,7 @@ import BookPage from "../pages/BookPage";
 import SignUpPages from "../pages/SignUpPages";
 import LoginPage from "../pages/LoginPage";
 import AddBook from "../pages/AddBook";
+import BookDetails from "../pages/BookDetails";
 
 const routes = createBrowserRouter([
   {
@@ -22,8 +23,12 @@ const routes = createBrowserRouter([
       },
 
       {
-        path: "/book-details",
-        element: <LoginPage></LoginPage>,
+        path: "/book-details/:id",
+        element: <BookDetails></BookDetails>,
+        loader: ({ params }) => {
+          console.log(params);
+          return fetch(`http://localhost:5000/api/v1/books/${params.id}`);
+        },
       },
       {
         path: "/add-books",

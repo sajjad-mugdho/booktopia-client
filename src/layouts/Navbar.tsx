@@ -9,7 +9,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const storedUserData = localStorage.getItem("user");
   const user = storedUserData ? JSON.parse(storedUserData) : null;
-  console.log(user);
 
   const handleLogout = () => {
     dispatch(clearUser());
