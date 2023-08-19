@@ -1,7 +1,34 @@
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { usePostReviewMutation } from "../redux/features/books/bookApi";
+import Review from "./Review";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BookDetailsCard = ({ book }: any) => {
-  //   const { title, image, genre, author } = book;
-  console.log(book);
+  const { id } = useParams();
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const [postReview, { isError }] = usePostReviewMutation();
+
+  const storedUserData = localStorage.getItem("user");
+
+  const user = storedUserData ? JSON.parse(storedUserData) : null;
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+  const handleReview = async (e) => {
+    e.preventDefault();
+
+    const name = user?.name;
+    const image = user?.img;
+    const text = inputValue;
+    const options = {
+      id: id,
+      data: { id: id, name: name, image: image, text: text },
+    };
+    const response = await postReview(options);
+    console.log(options, response);
+  };
 
   return (
     <div>
@@ -23,14 +50,26 @@ const BookDetailsCard = ({ book }: any) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row">
-        <div>Reviews</div>
-        <div className="flex flex-col gap-5 ">
-          <textarea
-            className="textarea w-[400px] textarea-accent"
-            placeholder="Reviews"
-          ></textarea>
-          <button className="btn btn-secondary  w-[100px]">Post</button>
+      <div className="flex flex-row justify-evenly shadow-lg rounded-md my-10">
+        <div>
+          <p className="text-xl font-bold">Reviwes</p>
+          {book?.review &&
+            book?.review.map((rev) => <Review rev={rev}></Review>)}
+        </div>
+        <div className=" my-5">
+          <form className="flex flex-col gap-5 mx-10" onSubmit={handleReview}>
+            <textarea
+              onChange={handleChange}
+              name="review"
+              className="textarea w-[400px] textarea-accent"
+              placeholder="Reviews"
+            ></textarea>
+            <input
+              type="submit"
+              value={"Post"}
+              className="btn btn-secondary  w-[100px]"
+            />
+          </form>
         </div>
       </div>
     </div>

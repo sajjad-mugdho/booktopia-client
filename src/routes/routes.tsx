@@ -26,7 +26,6 @@ const routes = createBrowserRouter([
         path: "/book-details/:id",
         element: <BookDetails></BookDetails>,
         loader: ({ params }) => {
-          console.log(params);
           return fetch(`http://localhost:5000/api/v1/books/${params.id}`);
         },
       },

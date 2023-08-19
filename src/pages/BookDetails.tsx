@@ -7,7 +7,7 @@ const BookDetails = () => {
 
   const { data } = useGetSingleBookQuery(id);
   const book = data?.data;
-  console.log("Data:", book);
+
   return (
     <div>
       <div className=" m-5 gap-10 pb-20">
