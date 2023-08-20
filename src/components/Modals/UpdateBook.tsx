@@ -1,6 +1,4 @@
-import React from "react";
-
-const UpdateBook = ({ handleDeleteBook }) => {
+const UpdateBook = ({ handleUpdateBook }) => {
   return (
     <div>
       <div className="card flex-shrink-0  w-[30rem] my-10 shadow-2xl ">
@@ -74,7 +72,7 @@ const UpdateBook = ({ handleDeleteBook }) => {
 
           <div className="form-control mt-6 modal-action">
             <input
-              onClick={handleDeleteBook}
+              onClick={handleUpdateBook}
               type="submit"
               className="btn btn-primary"
               value="Update"

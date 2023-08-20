@@ -1,12 +1,25 @@
 import BookCard from "../components/BookCard";
+import { useState } from "react";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
 
 const BookPage = () => {
-  const { data } = useGetBooksQuery(undefined);
+  const [filteredGenre, setFilteredGenre] = useState("");
+  const [filteredAuthor, setFilteredAuthor] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const { data } = useGetBooksQuery({
+    genre: filteredGenre,
+    author: filteredAuthor,
+    search: searchQuery,
+  });
+
+  console.log(data);
+
   return (
     <div>
       <div className=" flex flex-col gap-5 my-10 items-center">
         <input
+          onChange={(e) => setSearchQuery(e.target.value)}
           type="text"
           placeholder="Type here"
           className="input input-bordered input-info w-full max-w-md"

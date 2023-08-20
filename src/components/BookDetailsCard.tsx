@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import {
   useBookDeleteMutation,
+  useBookUpdateMutation,
   usePostReviewMutation,
 } from "../redux/features/books/bookApi";
 import Review from "./Review";
@@ -13,15 +14,20 @@ const BookDetailsCard = ({ book }: any) => {
   const { id } = useParams();
   const [inputValue, setInputValue] = useState<string>("");
   const navigate = useNavigate();
+
   const [postReview, { isError }] = usePostReviewMutation();
+
   const [bookDelete] = useBookDeleteMutation();
+  const [updateBook] = useBookUpdateMutation();
 
   const storedUserData = localStorage.getItem("user");
 
   const user = storedUserData ? JSON.parse(storedUserData) : null;
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
   };
+
   const handleReview = async (e) => {
     e.preventDefault();
 
@@ -33,11 +39,13 @@ const BookDetailsCard = ({ book }: any) => {
       data: { id: id, name: name, image: image, text: text },
     };
     const response = await postReview(options);
-    setInputValue("");
-    console.log(options, response);
+    if (response) {
+      return setInputValue("");
+    }
   };
 
-  const handleDeleteBook = async () => {
+  const handleDeleteBook = async (e) => {
+    e.preventDefault();
     if (book.userId === user.id) {
       const response = await bookDelete(book?.id);
       toast.success("Book deleted successfully");
@@ -45,6 +53,39 @@ const BookDetailsCard = ({ book }: any) => {
       navigate("/books");
     } else {
       toast.error("You have no right to delete this book");
+    }
+  };
+
+  const handleUpdateBook = async (e: {
+    preventDefault: () => void;
+    target: any;
+  }) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.booktitle.value;
+    const genre = form.bookgenre.value;
+    const image = form.bookimage.value;
+    const author = form.bookauthor.value;
+    const publicationDate = form.bookdate.value;
+    const details = form.bookdetails.value;
+    const options = {
+      id: id,
+      data: {
+        title: title,
+        genre: genre,
+        image: image,
+        author: author,
+        publicationDate: publicationDate,
+        details: details,
+      },
+    };
+
+    if (book.userId === user.id) {
+      const response = await updateBook(options);
+      toast.success(" Your book Updated");
+      console.log(response);
+    } else {
+      toast.error("You have no right to update book details");
     }
   };
 
@@ -117,11 +158,94 @@ const BookDetailsCard = ({ book }: any) => {
           </form>
         </dialog>
       </>
+
+      {/* Book Edit Modal*/}
+
       <>
         <dialog id="update" className="modal modal-bottom sm:modal-middle">
           <form method="dialog" className="modal-box">
             <h3 className="font-bold text-lg">Update!</h3>
-            <UpdateBook handleDeleteBook={handleDeleteBook}></UpdateBook>
+            <div>
+              <div className="card flex-shrink-0  w-[30rem] my-10 shadow-2xl ">
+                <form className="card-body">
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Book Title</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="booktitle"
+                      placeholder="Book Title"
+                      className="input input-bordered"
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Book Genre</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="bookgenre"
+                      placeholder="Book Genre"
+                      className="input input-bordered"
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Book Image</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="bookimage"
+                      placeholder="Book Image"
+                      className="input input-bordered"
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Book Author</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="bookauthor"
+                      placeholder="Book Author"
+                      className="input input-bordered"
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Book Publish Date</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="bookdate"
+                      placeholder="Book Publish Date"
+                      className="input input-bordered"
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Book Details</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="bookdetails"
+                      placeholder="Book Details"
+                      className="input input-bordered"
+                    />
+                  </div>
+
+                  <div className="form-control mt-6 modal-action">
+                    <input
+                      onClick={handleUpdateBook}
+                      type="submit"
+                      className="btn btn-primary"
+                      value="Update"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
           </form>
         </dialog>
       </>
