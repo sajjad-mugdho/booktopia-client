@@ -5,7 +5,10 @@ import { useGetSingleBookQuery } from "../redux/features/books/bookApi";
 const BookDetails = () => {
   const { id } = useParams();
 
-  const { data } = useGetSingleBookQuery(id);
+  const { data } = useGetSingleBookQuery(id, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
   const book = data?.data;
 
   return (

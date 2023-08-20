@@ -17,12 +17,19 @@ const bookApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["reviews"],
     }),
     postReview: builder.mutation({
       query: ({ id, data }) => ({
         url: `/books/review/${id}`,
         method: "POST",
         body: data,
+      }),
+    }),
+    bookDelete: builder.mutation({
+      query: (id) => ({
+        url: `/books/${id}`,
+        method: "DELETE",
       }),
     }),
   }),
@@ -35,4 +42,5 @@ export const {
   useLazyGetLastBooksQuery,
   usePostBookMutation,
   usePostReviewMutation,
+  useBookDeleteMutation,
 } = bookApi;
