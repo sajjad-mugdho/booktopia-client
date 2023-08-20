@@ -1,18 +1,35 @@
 import BookCard from "../components/BookCard";
 import { useState } from "react";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
+import CheckBox from "../components/CheckBox";
+import CheckBoxGenre from "../components/Modals/CheckBoxGenre";
 
 const BookPage = () => {
-  const [filteredGenre, setFilteredGenre] = useState("");
-  const [filteredAuthor, setFilteredAuthor] = useState("");
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedYears, setSelectedYears] = useState<number[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   const { data } = useGetBooksQuery({
-    genre: filteredGenre,
-    author: filteredAuthor,
+    genre: selectedGenres.join(","),
+    year: selectedYears.join(","),
     search: searchQuery,
   });
 
+  const handleYearCheckboxChange = (year) => {
+    if (selectedYears.includes(year)) {
+      setSelectedYears(selectedYears.filter((y) => y !== year));
+    } else {
+      setSelectedYears([...selectedYears, year]);
+    }
+  };
+
+  const handleGenreCheckboxChange = (genre) => {
+    if (selectedGenres.includes(genre)) {
+      setSelectedGenres(selectedGenres.filter((g) => g !== genre));
+    } else {
+      setSelectedGenres([...selectedGenres, genre]);
+    }
+  };
   console.log(data);
 
   return (
@@ -33,13 +50,21 @@ const BookPage = () => {
         />
       </div>
       <div className="flex flex-row">
-        <div className="card w-96 max-h-screen mx-10 bg-sky-500 shadow-xl">
-          <figure></figure>
+        <div className="card static w-[400px] h-[1200px] flex flex-row mx-10 bg-green-300 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title">Filters!</h2>
-            <p></p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
+            <h2 className="card-title">Filter By genre</h2>
+            <div className="form-control">
+              <CheckBoxGenre
+                onGenreCheckboxChange={handleGenreCheckboxChange}
+              />
+            </div>
+          </div>
+          <div className="card-body">
+            <h2 className="card-title">Filter By Year</h2>
+            <div className="form-control">
+              <CheckBox
+                onYearCheckboxChange={handleYearCheckboxChange}
+              ></CheckBox>
             </div>
           </div>
         </div>
