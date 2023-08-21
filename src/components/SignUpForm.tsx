@@ -34,8 +34,6 @@ const SignUpForm = () => {
     toast.success("User Signup Successfully");
     form.reset();
     navigate("/");
-
-    console.log(user);
   };
   return (
     <div className="card flex-shrink-0  max-w-sm shadow-2xl ">

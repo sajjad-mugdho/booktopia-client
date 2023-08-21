@@ -26,7 +26,9 @@ const routes = createBrowserRouter([
         path: "/book-details/:id",
         element: <BookDetails></BookDetails>,
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/api/v1/books/${params.id}`);
+          return fetch(
+            `https://booktopia-server.vercel.app/api/v1/books/${params.id}`
+          );
         },
       },
       {

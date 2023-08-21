@@ -30,7 +30,6 @@ const BookPage = () => {
       setSelectedGenres([...selectedGenres, genre]);
     }
   };
-  console.log(data);
 
   return (
     <div>

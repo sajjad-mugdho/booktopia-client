@@ -32,18 +32,6 @@ const AddBookForm = () => {
     };
     const response = await postBook(options);
     toast.success("book addeds");
-    console.log("response::", response);
-  };
-
-  const handleDeleteBook = async () => {
-    try {
-      const response = await deleteBook(bookIdToDelete);
-      toast.success("Book deleted successfully");
-      console.log(response);
-    } catch (error) {
-      toast.error("Error deleting book");
-      console.error(error);
-    }
   };
 
   return (

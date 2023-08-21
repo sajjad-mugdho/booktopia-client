@@ -4,7 +4,6 @@ import BookCard from "./BookCard";
 
 const BookSection = () => {
   const { data, isLoading, isError } = useGetLastBooksQuery(undefined);
-  console.log(data, isLoading, isError);
 
   return (
     <>
