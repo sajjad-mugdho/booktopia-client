@@ -5,6 +5,10 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../redux/features/books/bookSlice";
+import {
+  addToReadingList,
+  removeFromReadingList,
+} from "../redux/features/books/readingSlice";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BookCard = ({ book }: any) => {
@@ -17,11 +21,24 @@ const BookCard = ({ book }: any) => {
     (wishlistBook) => wishlistBook?._id === book?._id
   );
 
+  const readingList = useAppSelector((state) => state.readingList.books);
+  const isBookInReadingList = readingList.some(
+    (readingListBook) => readingListBook?._id === book?._id
+  );
+
   const handleToggleWishlist = () => {
     if (isBookInWishlist) {
       dispatch(removeFromWishlist(book));
     } else {
       dispatch(addToWishlist(book));
+    }
+  };
+
+  const handleToggleReadingList = () => {
+    if (isBookInReadingList) {
+      dispatch(removeFromReadingList(book)); // Dispatch removeFromReadingList action
+    } else {
+      dispatch(addToReadingList(book)); // Dispatch addToReadingList action
     }
   };
   return (
@@ -45,7 +62,10 @@ const BookCard = ({ book }: any) => {
               </button>
             </Link>
             <Link to={``}>
-              <button className="btn w-[300px] my-2  btn-primary bg-sky-500">
+              <button
+                onClick={handleToggleReadingList}
+                className="btn w-[300px] my-2  btn-primary bg-sky-500"
+              >
                 <AiOutlineBook />
                 Add to Readlist
               </button>

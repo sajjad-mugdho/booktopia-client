@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { useAppSelector } from "../redux/hook";
 
 import WDrawer from "../components/Modals/WDrawer";
+import RDrawer from "../components/Modals/RDrawer";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Navbar = () => {
     navigate("/login");
   };
   const wishlist = useAppSelector((state) => state.wishlist.books);
+  const readingList = useAppSelector((state) => state.readingList.books);
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -50,6 +52,11 @@ const Navbar = () => {
         <>
           {/* Wishlist Drawer */}
           <WDrawer wishlist={wishlist} />
+          {/* End of Wishlist Drawer */}
+        </>
+        <>
+          {/* Readig Drawer */}
+          <RDrawer readingList={readingList} />
           {/* End of Wishlist Drawer */}
         </>
         {user?.email && (
