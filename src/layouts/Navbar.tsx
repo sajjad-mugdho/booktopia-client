@@ -49,16 +49,20 @@ const Navbar = () => {
             <a className="btn btn-ghost">Add Books</a>
           </Link>
         )}
-        <>
-          {/* Wishlist Drawer */}
-          <WDrawer wishlist={wishlist} />
-          {/* End of Wishlist Drawer */}
-        </>
-        <>
-          {/* Readig Drawer */}
-          <RDrawer readingList={readingList} />
-          {/* End of Wishlist Drawer */}
-        </>
+        {user?.email && (
+          <>
+            {/* Wishlist Drawer */}
+            <WDrawer wishlist={wishlist} />
+            {/* End of Wishlist Drawer */}
+          </>
+        )}
+        {user?.email && (
+          <>
+            {/* Readig Drawer */}
+            <RDrawer readingList={readingList} />
+            {/* End of Wishlist Drawer */}
+          </>
+        )}
         {user?.email && (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
