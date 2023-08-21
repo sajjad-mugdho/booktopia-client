@@ -3,6 +3,9 @@ import logo from "../assets/images/booktopia.png";
 import { useDispatch } from "react-redux";
 import { clearUser } from "../redux/features/users/userSlice";
 import { toast } from "react-hot-toast";
+import { useAppSelector } from "../redux/hook";
+
+import WDrawer from "../components/Modals/WDrawer";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -15,11 +18,15 @@ const Navbar = () => {
     toast.success("Logout");
     navigate("/login");
   };
+  const wishlist = useAppSelector((state) => state.wishlist.books);
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
         <a className=" normal-case text-xl">
-          <img src={logo} alt="logo" />
+          <Link to={"/"}>
+            {" "}
+            <img src={logo} alt="logo" />
+          </Link>
         </a>
       </div>
       <div className="flex-none gap-2">
@@ -29,6 +36,7 @@ const Navbar = () => {
         <Link to={"/books"}>
           <a className="btn btn-ghost">All Books</a>
         </Link>
+        <Link to={"/books"}></Link>
         {!user?.email && (
           <Link to={"/login"}>
             <a className="btn btn-ghost">Login</a>
@@ -39,6 +47,11 @@ const Navbar = () => {
             <a className="btn btn-ghost">Add Books</a>
           </Link>
         )}
+        <>
+          {/* Wishlist Drawer */}
+          <WDrawer wishlist={wishlist} />
+          {/* End of Wishlist Drawer */}
+        </>
         {user?.email && (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -65,6 +78,7 @@ const Navbar = () => {
             </ul>
           </div>
         )}
+        <></>
       </div>
     </div>
   );
