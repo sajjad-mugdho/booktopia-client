@@ -1,4 +1,5 @@
-const Review = ({ rev }) => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const Review = ({ rev }: any) => {
   return (
     <div className="flex flex-row p-2 my-3 bg-sky-300 rounded-lg shadow-lg ">
       <div className=" p-2 ">

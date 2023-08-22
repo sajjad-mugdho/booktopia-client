@@ -1,9 +1,10 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { HiArchiveBoxXMark } from "react-icons/hi2";
 import { removeFromWishlist } from "../redux/features/books/bookSlice";
 import { useAppDispatch } from "../redux/hook";
 
-const BookListForR = ({ item }) => {
+const BookListForR = ({ item }: any) => {
   console.log("ttt:", item);
 
   const dispatch = useAppDispatch();

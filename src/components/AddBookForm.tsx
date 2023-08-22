@@ -4,7 +4,7 @@ const AddBookForm = () => {
   const storedUserData = localStorage.getItem("user");
   const user = storedUserData ? JSON.parse(storedUserData) : null;
 
-  const [postBook, {}] = usePostBookMutation();
+  const [postBook] = usePostBookMutation();
 
   const handleAddBook = async (e: {
     preventDefault: () => void;
@@ -32,6 +32,7 @@ const AddBookForm = () => {
     };
     const response = await postBook(options);
     toast.success("book addeds");
+    console.log(response);
   };
 
   return (

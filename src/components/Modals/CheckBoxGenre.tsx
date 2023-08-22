@@ -1,6 +1,6 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-const CheckBoxGenre = ({ onGenreCheckboxChange }) => {
+const CheckBoxGenre = ({ onGenreCheckboxChange }: any) => {
   const genres = [
     "Science Fiction",
     "Biography",
