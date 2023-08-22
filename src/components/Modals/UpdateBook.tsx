@@ -1,4 +1,5 @@
-const UpdateBook = ({ handleUpdateBook }) => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const UpdateBook = ({ handleUpdateBook }: any) => {
   return (
     <div>
       <div className="card flex-shrink-0  w-[30rem] my-10 shadow-2xl ">

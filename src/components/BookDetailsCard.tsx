@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+
 import {
   useBookDeleteMutation,
   useBookUpdateMutation,
@@ -7,7 +9,6 @@ import {
 } from "../redux/features/books/bookApi";
 import Review from "./Review";
 import { toast } from "react-hot-toast";
-import UpdateBook from "./Modals/UpdateBook";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BookDetailsCard = ({ book }: any) => {
@@ -15,7 +16,7 @@ const BookDetailsCard = ({ book }: any) => {
   const [inputValue, setInputValue] = useState<string>("");
   const navigate = useNavigate();
 
-  const [postReview, { isError }] = usePostReviewMutation();
+  const [postReview] = usePostReviewMutation();
 
   const [bookDelete] = useBookDeleteMutation();
   const [updateBook] = useBookUpdateMutation();
@@ -24,11 +25,11 @@ const BookDetailsCard = ({ book }: any) => {
 
   const user = storedUserData ? JSON.parse(storedUserData) : null;
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setInputValue(e.target.value);
   };
 
-  const handleReview = async (e) => {
+  const handleReview = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     const name = user?.name;
@@ -44,7 +45,7 @@ const BookDetailsCard = ({ book }: any) => {
     }
   };
 
-  const handleDeleteBook = async (e) => {
+  const handleDeleteBook = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (book.userId === user.id) {
       const response = await bookDelete(book?.id);
@@ -105,14 +106,14 @@ const BookDetailsCard = ({ book }: any) => {
           <p className="text-xl text-left ">Details: {book?.details}</p>
           <div className="card-actions">
             <button
-              onClick={() => window.update.showModal()}
+              onClick={() => (window as any).update.showModal()}
               className="btn btn-success"
             >
               Edit
             </button>
             <button
               className="btn btn-warning"
-              onClick={() => window.delete.showModal()}
+              onClick={() => (window as any).delete.showModal()}
             >
               Delete
             </button>
@@ -123,7 +124,7 @@ const BookDetailsCard = ({ book }: any) => {
         <div>
           <p className="text-xl font-bold">Reviwes</p>
           {book?.review &&
-            book?.review.map((rev) => <Review rev={rev}></Review>)}
+            book?.review.map((rev: any) => <Review rev={rev}></Review>)}
         </div>
         <div className=" my-5">
           <form className="flex flex-col gap-5 mx-10" onSubmit={handleReview}>

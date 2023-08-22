@@ -3,8 +3,7 @@ import { useGetLastBooksQuery } from "../redux/features/books/bookApi";
 import BookCard from "./BookCard";
 
 const BookSection = () => {
-  const { data, isLoading, isError } = useGetLastBooksQuery(undefined);
-  console.log(data, isLoading, isError);
+  const { data } = useGetLastBooksQuery(undefined);
 
   return (
     <>

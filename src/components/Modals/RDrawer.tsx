@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BookListForR from "../BookListForR";
 
-const RDrawer = ({ readingList }) => {
+const RDrawer = ({ readingList }: any) => {
   return (
     <>
       <div className="drawer drawer-end z-[13]">
@@ -17,7 +18,7 @@ const RDrawer = ({ readingList }) => {
         <div className="drawer-side h-full">
           <label htmlFor="wishlist-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-[450px] h-full bg-base-200 text-base-content">
-            {readingList.map((item) => (
+            {readingList.map((item: any) => (
               <BookListForR item={item}></BookListForR>
             ))}
           </ul>

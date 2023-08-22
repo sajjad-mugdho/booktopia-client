@@ -22,7 +22,7 @@ const SignUpForm = () => {
     };
 
     const response = await signup(options);
-    const user = response?.data?.data;
+    const user = "data" in response ? response.data.data : null;
     if (user) {
       dispatch(setUser(user));
     }
@@ -34,8 +34,6 @@ const SignUpForm = () => {
     toast.success("User Signup Successfully");
     form.reset();
     navigate("/");
-
-    console.log(user);
   };
   return (
     <div className="card flex-shrink-0  max-w-sm shadow-2xl ">

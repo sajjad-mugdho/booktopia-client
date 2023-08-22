@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BookCard from "../components/BookCard";
 import { useState } from "react";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
@@ -15,7 +16,7 @@ const BookPage = () => {
     search: searchQuery,
   });
 
-  const handleYearCheckboxChange = (year) => {
+  const handleYearCheckboxChange = (year: number) => {
     if (selectedYears.includes(year)) {
       setSelectedYears(selectedYears.filter((y) => y !== year));
     } else {
@@ -23,14 +24,13 @@ const BookPage = () => {
     }
   };
 
-  const handleGenreCheckboxChange = (genre) => {
+  const handleGenreCheckboxChange = (genre: string) => {
     if (selectedGenres.includes(genre)) {
       setSelectedGenres(selectedGenres.filter((g) => g !== genre));
     } else {
       setSelectedGenres([...selectedGenres, genre]);
     }
   };
-  console.log(data);
 
   return (
     <div>

@@ -27,8 +27,7 @@ const LoginForm = () => {
     if (isLoading) {
       return <p>Loading....</p>;
     }
-    const user = response.data.data;
-    console.log(user);
+    const user = "data" in response ? response.data.data : null;
 
     if (user) {
       dispatch(setUser(user));
