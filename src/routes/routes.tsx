@@ -7,6 +7,7 @@ import SignUpPages from "../pages/SignUpPages";
 import LoginPage from "../pages/LoginPage";
 import AddBook from "../pages/AddBook";
 import BookDetails from "../pages/BookDetails";
+import EditBookForm from "../components/EditBookForm";
 
 const routes = createBrowserRouter([
   {
@@ -34,6 +35,15 @@ const routes = createBrowserRouter([
       {
         path: "/add-books",
         element: <AddBook></AddBook>,
+      },
+      {
+        path: "/book-edit/:id",
+        element: <EditBookForm></EditBookForm>,
+        loader: ({ params }) => {
+          return fetch(
+            `https://booktopia-server.vercel.app/api/v1/books/${params.id}`
+          );
+        },
       },
     ],
   },

@@ -1,16 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AiOutlineCheckSquare } from "react-icons/ai";
-import { removeFromWishlist } from "../redux/features/books/bookSlice";
 import { useAppDispatch } from "../redux/hook";
+import { removeFromReadingList } from "../redux/features/books/readingSlice";
 
 const BookListForR = ({ item }: any) => {
-  console.log("ttt:", item);
-
   const dispatch = useAppDispatch();
 
   const handleRemoveFromWishlist = () => {
-    dispatch(removeFromWishlist(item));
+    dispatch(removeFromReadingList(item));
   };
   return (
     <>
@@ -30,7 +27,7 @@ const BookListForR = ({ item }: any) => {
             onClick={handleRemoveFromWishlist}
             className="btn btn-success"
           >
-            <AiOutlineCheckSquare />
+            Complete
           </button>
         </div>
       </div>

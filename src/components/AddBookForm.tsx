@@ -33,7 +33,7 @@ const AddBookForm = () => {
         userEmail: userEmail,
       },
     };
-    console.log(options);
+
     const response = await postBook(options);
     toast.success("book addeds");
     console.log(response);

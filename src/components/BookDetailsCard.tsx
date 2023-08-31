@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
 import {
   useBookDeleteMutation,
-  useBookUpdateMutation,
   usePostReviewMutation,
 } from "../redux/features/books/bookApi";
 import Review from "./Review";
@@ -19,7 +18,6 @@ const BookDetailsCard = ({ book }: any) => {
   const [postReview] = usePostReviewMutation();
 
   const [bookDelete] = useBookDeleteMutation();
-  const [updateBook] = useBookUpdateMutation();
 
   const storedUserData = localStorage.getItem("user");
 
@@ -58,39 +56,6 @@ const BookDetailsCard = ({ book }: any) => {
     }
   };
 
-  const handleUpdateBook = async (e: {
-    preventDefault: () => void;
-    target: any;
-  }) => {
-    e.preventDefault();
-    const form = e.target;
-    const title = form.booktitle.value;
-    const genre = form.bookgenre.value;
-    const image = form.bookimage.value;
-    const author = form.bookauthor.value;
-    const publicationDate = form.bookdate.value;
-    const details = form.bookdetails.value;
-    const options = {
-      id: id,
-      data: {
-        title: title,
-        genre: genre,
-        image: image,
-        author: author,
-        publicationDate: publicationDate,
-        details: details,
-      },
-    };
-
-    if (book.userId === user.id) {
-      const response = await updateBook(options);
-      toast.success(" Your book Updated");
-      console.log(response);
-    } else {
-      toast.error("You have no right to update book details");
-    }
-  };
-
   return (
     <div>
       <div className="card lg:card-side bg-base-100 shadow-xl">
@@ -106,12 +71,9 @@ const BookDetailsCard = ({ book }: any) => {
           <p className="text-xl text-left font-bold">Genre: {book?.genre}, </p>
           <p className="text-xl text-left ">Details: {book?.details}</p>
           <div className="card-actions">
-            <button
-              onClick={() => (window as any).update.showModal()}
-              className="btn btn-success"
-            >
-              Edit
-            </button>
+            <Link to={`/book-edit/${id}`}>
+              <button className="btn btn-success">Edit</button>
+            </Link>
             <button
               className="btn btn-warning"
               onClick={() => (window as any).delete.showModal()}
@@ -162,95 +124,6 @@ const BookDetailsCard = ({ book }: any) => {
       </>
 
       {/* Book Edit Modal*/}
-
-      <>
-        <dialog id="update" className="modal modal-bottom sm:modal-middle">
-          <form method="dialog" className="modal-box">
-            <h3 className="font-bold text-lg">Update!</h3>
-            <div>
-              <div className="card flex-shrink-0  w-[30rem] my-10 shadow-2xl ">
-                <form className="card-body">
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Book Title</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="booktitle"
-                      placeholder="Book Title"
-                      className="input input-bordered"
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Book Genre</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="bookgenre"
-                      placeholder="Book Genre"
-                      className="input input-bordered"
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Book Image</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="bookimage"
-                      placeholder="Book Image"
-                      className="input input-bordered"
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Book Author</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="bookauthor"
-                      placeholder="Book Author"
-                      className="input input-bordered"
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Book Publish Date</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="bookdate"
-                      placeholder="Book Publish Date"
-                      className="input input-bordered"
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Book Details</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="bookdetails"
-                      placeholder="Book Details"
-                      className="input input-bordered"
-                    />
-                  </div>
-
-                  <div className="form-control mt-6 modal-action">
-                    <input
-                      onClick={handleUpdateBook}
-                      type="submit"
-                      className="btn btn-primary"
-                      value="Update"
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </form>
-        </dialog>
-      </>
     </div>
   );
 };
