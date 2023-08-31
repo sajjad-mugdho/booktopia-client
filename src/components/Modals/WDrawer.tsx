@@ -5,7 +5,7 @@ import BookList from "../BookList";
 const WDrawer = ({ wishlist }: any) => {
   return (
     <>
-      <div className="drawer drawer-end z-[10]">
+      <div className="drawer drawer-end z-[15]">
         <input id="wishlist-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Other navbar content */}

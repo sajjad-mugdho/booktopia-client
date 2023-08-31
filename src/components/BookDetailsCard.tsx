@@ -47,7 +47,8 @@ const BookDetailsCard = ({ book }: any) => {
 
   const handleDeleteBook = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (book.userId === user.id) {
+    console.log(book.userId, user._id);
+    if (book.userId === user._id) {
       const response = await bookDelete(book?.id);
       toast.success("Book deleted successfully");
       console.log(response);

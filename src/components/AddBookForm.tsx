@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { usePostBookMutation } from "../redux/features/books/bookApi";
 import { toast } from "react-hot-toast";
 const AddBookForm = () => {
@@ -15,6 +16,7 @@ const AddBookForm = () => {
     const title = form.booktitle.value;
     const genre = form.bookgenre.value;
     const image = form.bookimage.value;
+    const userEmail = form.userEmail.value;
     const author = form.bookauthor.value;
     const publicationDate = form.bookdate.value;
     const details = form.bookdetails.value;
@@ -28,8 +30,10 @@ const AddBookForm = () => {
         publicationDate: publicationDate,
         details: details,
         userId: userId,
+        userEmail: userEmail,
       },
     };
+    console.log(options);
     const response = await postBook(options);
     toast.success("book addeds");
     console.log(response);
@@ -106,8 +110,23 @@ const AddBookForm = () => {
         </div>
         <div className="form-control">
           <label className="label">
+            <span className="label-text">User Email</span>
+          </label>
+
+          <input
+            type="text"
+            placeholder="ID"
+            name="userEmail"
+            className="input input-bordered"
+            value={user?.email}
+            disabled
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
             <span className="label-text">User Id</span>
           </label>
+
           <input
             type="text"
             placeholder="ID"

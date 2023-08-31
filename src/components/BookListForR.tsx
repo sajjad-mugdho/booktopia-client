@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { HiArchiveBoxXMark } from "react-icons/hi2";
+import { AiOutlineCheckSquare } from "react-icons/ai";
 import { removeFromWishlist } from "../redux/features/books/bookSlice";
 import { useAppDispatch } from "../redux/hook";
 
@@ -26,8 +26,11 @@ const BookListForR = ({ item }: any) => {
           <h1 className="text-base font-semibold">Name: {item?.title}</h1>
         </div>
         <div>
-          <button onClick={handleRemoveFromWishlist} className="btn btn-error">
-            <HiArchiveBoxXMark />
+          <button
+            onClick={handleRemoveFromWishlist}
+            className="btn btn-success"
+          >
+            <AiOutlineCheckSquare />
           </button>
         </div>
       </div>

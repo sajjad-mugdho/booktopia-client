@@ -4,7 +4,7 @@ import BookListForR from "../BookListForR";
 const RDrawer = ({ readingList }: any) => {
   return (
     <>
-      <div className="drawer drawer-end z-[13]">
+      <div className="drawer drawer-end z-[10]">
         <input id="wishlist-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Other navbar content */}
